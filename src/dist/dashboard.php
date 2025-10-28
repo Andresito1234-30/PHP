@@ -1,20 +1,19 @@
 <?php
-
 session_start();
-
-if (!isset($_SESSION["user_id"])) {
-
-    header("Location: login.php");
-
-    exit;
-
+if (!isset($_SESSION['user_id'])) {
+  header('Location: /login.php');
+  exit;
 }
 
-echo "Bienvenido, " . $_SESSION["username"];
+echo 'Bienvenido, ' . htmlspecialchars($_SESSION['username']);
 
-echo "<br><a href='logout.php'>Cerrar sesión</a>";
+if (!empty($_SESSION['ruta_foto'])) {
+  echo '<br><img src="' . htmlspecialchars($_SESSION['ruta_foto']) . '" alt="Foto" style="max-width:140px;border-radius:8px">';
+}
 
+echo "<br><a href='/logout.php'>Cerrar sesión</a>";
 ?>
+
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
